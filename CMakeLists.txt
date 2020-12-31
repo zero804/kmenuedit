@@ -17,6 +17,7 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMInstallIcons)
 include(ECMQtDeclareLoggingCategory)
 include(KDEClangFormat)
+include(KDECommitHooks)
 
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
     Core
@@ -78,6 +79,7 @@ target_link_libraries(kmenuedit
 # add clang-format target for all our real source files
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
 kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
+kde_configure_pre_commit_hook(CHECKS CLANG_FORMAT)
 
 install(TARGETS kmenuedit ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
